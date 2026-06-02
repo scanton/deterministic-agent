@@ -1,0 +1,65 @@
+.handoff-summary {
+  background: white;
+  border: 1.5px solid #f0e0e0;
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 8px;
+}
+
+.summary-header {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #c0392b;
+  margin-bottom: 10px;
+}
+
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.summary-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.summary-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #aaa;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.summary-value {
+  font-size: 12px;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.proceed-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.proceed-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.proceed-btn:active {
+  transform: translateY(0);
+}
