@@ -61,7 +61,7 @@ function MessageBubble({
         {/* Browse library CTA */}
         {msg.isBrowse && isActive && (
           <a
-            href="https://heartstamp.com/library"
+            href="https://heartstamp.com/categories"
             target="_blank"
             rel="noopener noreferrer"
             className="browse-library-btn"
