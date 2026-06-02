@@ -212,11 +212,8 @@ export function useHeartFlow() {
 
   const handleEntryChoice = useCallback((choice: 'create' | 'browse') => {
     if (choice === 'browse') {
-      addMessage({ type: 'user', text: 'Browse the Library' })
-      addMessage({ type: 'stampy', text: "The library experience is coming soon! For now, let me help you create something completely custom." })
-      setTimeout(() => {
-        advanceToStep('occasion', heartDataRef.current)
-      }, 800)
+      addMessage({ type: 'user', text: 'Customize from 10k+ Templates' })
+      addMessage({ type: 'stampy', text: "That'll take you to the card library, where you can browse over 10,000 designs and customize any one you like. Tap the button below to open it." , isBrowse: true })
       return
     }
     addMessage({ type: 'user', text: 'Create from Scratch' })

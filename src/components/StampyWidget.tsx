@@ -58,6 +58,18 @@ function MessageBubble({
           </div>
         )}
 
+        {/* Browse library CTA */}
+        {msg.isBrowse && isActive && (
+          <a
+            href="https://heartstamp.com/library"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="browse-library-btn"
+          >
+            <span>🔍</span> Browse the Card Library →
+          </a>
+        )}
+
         {/* Standard tile grids */}
         {msg.tiles && msg.tiles.length > 0 && isActive && !msg.isEntry && (
           <TileGrid

@@ -53,6 +53,7 @@ export interface ChatMessage {
   ageRangeTiles?: TileOption[];
   contextPrompt?: string;
   isEntry?: boolean;
+  isBrowse?: boolean;
   isHandoff?: boolean;
   heartSummary?: HeartData;
 }
