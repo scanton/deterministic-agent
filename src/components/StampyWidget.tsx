@@ -38,6 +38,13 @@ function MessageBubble({
       <div className="bubble-group">
         {msg.text && <div className="bubble bubble--stampy">{msg.text}</div>}
 
+        {/* Back button — shown on active step when history exists */}
+        {isActive && flow.canGoBack && !msg.isEntry && !msg.isHandoff && flow.step !== 'agent' && (
+          <button className="back-btn" onClick={flow.handleGoBack}>
+            ← Back
+          </button>
+        )}
+
         {/* Entry point buttons */}
         {msg.isEntry && isActive && (
           <div className="entry-buttons">

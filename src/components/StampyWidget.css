@@ -122,6 +122,23 @@
   box-shadow: 0 2px 8px rgba(192,57,43,0.25);
 }
 
+/* === Back Button === */
+.back-btn {
+  background: none;
+  border: none;
+  padding: 2px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #aaa;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+
+.back-btn:hover {
+  color: #c0392b;
+}
+
 /* === Browse Library CTA === */
 .browse-library-btn {
   display: flex;

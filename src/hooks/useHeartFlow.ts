@@ -172,6 +172,8 @@ export function useHeartFlow() {
   const [isTyping, setIsTyping] = useState(false)
   const [recipientContextText, setRecipientContextText] = useState('')
   const [selectedAgeRange, setSelectedAgeRange] = useState<string | null>(null)
+  const [stepHistory, setStepHistory] = useState<FlowStep[]>([])
+  const [heartDataHistory, setHeartDataHistory] = useState<HeartData[]>([])
 
   const heartDataRef = useRef(heartData)
   heartDataRef.current = heartData
@@ -183,6 +185,9 @@ export function useHeartFlow() {
   }, [])
 
   const advanceToStep = useCallback((nextStep: FlowStep, updatedData: HeartData) => {
+    // Snapshot current step + data so we can go back
+    setStepHistory(prev => [...prev, stepRef.current])
+    setHeartDataHistory(prev => [...prev, heartDataRef.current])
     setIsTyping(true)
     setTimeout(() => {
       setIsTyping(false)
@@ -191,6 +196,29 @@ export function useHeartFlow() {
       addMessage(msg)
     }, 1200)
   }, [addMessage])
+
+  const handleGoBack = useCallback(() => {
+    setStepHistory(prev => {
+      if (prev.length === 0) return prev
+      const prevStep = prev[prev.length - 1]
+      // Restore heartData snapshot
+      setHeartDataHistory(dataHistory => {
+        if (dataHistory.length > 0) {
+          setHeartData(dataHistory[dataHistory.length - 1])
+        }
+        return dataHistory.slice(0, -1)
+      })
+      setStep(prevStep)
+      // Remove the current Stampy question + the user answer that preceded it
+      setMessages(msgs => msgs.slice(0, -2))
+      // Reset sub-step UI state if returning to recipient_context
+      if (prevStep === 'recipient_context') {
+        setSelectedAgeRange(null)
+        setRecipientContextText('')
+      }
+      return prev.slice(0, -1)
+    })
+  }, [])
 
   const handleTileSelect = useCallback((
     tile: TileOption,
@@ -347,6 +375,8 @@ export function useHeartFlow() {
     setIsTyping(false)
     setRecipientContextText('')
     setSelectedAgeRange(null)
+    setStepHistory([])
+    setHeartDataHistory([])
   }, [])
 
   return {
@@ -370,6 +400,8 @@ export function useHeartFlow() {
     handlePhotoSkip,
     handleHandoffProceed,
     handleFreeTextInput,
+    handleGoBack,
+    canGoBack: stepHistory.length > 0,
     reset,
   }
 }
