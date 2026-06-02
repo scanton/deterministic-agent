@@ -172,7 +172,7 @@ export default function StampyWidget() {
           <span className="widget-title">Stampy</span>
         </div>
         <div className="widget-header-right">
-          <button className="header-icon-btn" title="New conversation">↺</button>
+          <button className="header-icon-btn" title="New conversation" onClick={flow.reset}>↺</button>
           <button className="header-icon-btn" title="Expand">⊡</button>
           <button className="header-icon-btn" title="Minimize">−</button>
         </div>

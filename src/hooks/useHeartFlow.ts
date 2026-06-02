@@ -343,6 +343,15 @@ export function useHeartFlow() {
     advanceToStep(nextStep, updatedData)
   }, [addMessage, advanceToStep])
 
+  const reset = useCallback(() => {
+    setStep('entry')
+    setMessages([{ id: makeId(), ...buildStampyMessage('entry', INITIAL_HEART_DATA) }])
+    setHeartData(INITIAL_HEART_DATA)
+    setIsTyping(false)
+    setRecipientContextText('')
+    setSelectedAgeRange(null)
+  }, [])
+
   return {
     step,
     messages,
@@ -364,5 +373,6 @@ export function useHeartFlow() {
     handlePhotoSkip,
     handleHandoffProceed,
     handleFreeTextInput,
+    reset,
   }
 }
